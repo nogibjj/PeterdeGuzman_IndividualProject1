@@ -1,4 +1,4 @@
-# Test function created in main.py script
+# Test functions created in main.py script
 
 from main import mean_age, median_age, std_age, generate_histogram_age
 import numpy as np

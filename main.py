@@ -81,6 +81,28 @@ def recode_age_groups(series):
         return "65+ yrs"
 
 
+# edit to make the below function run
+def make_categorical_agecat(df):
+    age_column = [col for col in df.columns if "Age Group" in col]
+    df[age_column] = pd.Categorical(
+        df[age_column],
+        categories=[
+            "18-24 yrs",
+            "25-29 yrs",
+            "30-34 yrs",
+            "35-39 yrs",
+            "40-44 yrs",
+            "45-49 yrs",
+            "50-54 yrs",
+            "55-59 yrs",
+            "60-64 yrs",
+            "65+ yrs",
+        ],
+        ordered=True,
+    )
+    return df[age_column]
+
+
 def generate_histogram_age(df):
     age_column = [col for col in df.columns if "age" in col]
     plt.figure(figsize=(10, 6))
@@ -102,6 +124,9 @@ def generate_histogram_age(df):
 def generate_age_gender_pyramid(df):
     # Prepare data for plotting
     df = pd.DataFrame(df)
+    age_gender_counts = (
+        df.groupby(["Age Group", "gender_code"]).size().unstack(fill_value=0)
+    )
     age_groups = age_gender_counts.index
     males = age_gender_counts["M"]
     females = age_gender_counts["F"]
@@ -144,26 +169,7 @@ def main(file_zip, file_txt):
     print(median_age(df))
     print(std_age(df))
     df["Age Group"] = df["age_at_year_end"].apply(recode_age_groups)
-    df["Age Group"] = pd.Categorical(
-        df["Age Group"],
-        categories=[
-            "18-24 yrs",
-            "25-29 yrs",
-            "30-34 yrs",
-            "35-39 yrs",
-            "40-44 yrs",
-            "45-49 yrs",
-            "50-54 yrs",
-            "55-59 yrs",
-            "60-64 yrs",
-            "65+ yrs",
-        ],
-        ordered=True,
-    )
-    age_gender_counts = (
-        df.groupby(["Age Group", "gender_code"]).size().unstack(fill_value=0)
-    )
-    print(pd.DataFrame(age_gender_counts))
+    make_categorical_agecat(df)
     # generate histogram of age distribution
     generate_histogram_age(df)
     # generate population pyramid of age and gender
