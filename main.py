@@ -98,11 +98,13 @@ def generate_histogram_age(df):
     plt.savefig("output.png")
     # plt.show()
 
+def age_pyramid(df):
+    
 
-def main():
+def main(file_zip, file_txt):
     # load data with zipfile and custom function
-    with zipfile.ZipFile("ncvoter32.zip") as z:
-        with z.open("ncvoter32.txt") as f:
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
             df = read_csv_ncvoterdata(f)
     # summary statistics
     print(mean_age(df))
@@ -125,8 +127,6 @@ def main():
         ],
         ordered=True,
     )
-
-    print(df["Age Group"].value_counts(sort=False))
     # generate histogram of age distribution
     # and save to output folder
     generate_histogram_age(df)
@@ -137,7 +137,7 @@ main()
 # test
 import pandas as pd
 import zipfile
-
+import matplotlib.pyplot as plt
 
 def read_csv_ncvoterdata(voterdata):
     return pd.read_csv(
@@ -197,3 +197,24 @@ df["Age Group"] = pd.Categorical(
 )
 
 print(df["Age Group"].value_counts(sort=False))
+print(df["gender_code"].value_counts(sort=False))
+
+# Count occurrences for each age group and gender
+age_gender_counts = df.groupby(["Age Group", "gender_code"]).size().unstack(fill_value=0)
+
+# Prepare data for plotting
+age_groups = age_gender_counts.index
+males = age_gender_counts["M"]
+females = age_gender_counts["F"]
+
+# Convert males to negative values for plotting
+males_negative = -males
+
+fig = plt.figure(figsize=(15,10))
+
+
+plt.barh(y=df["Age Group"], width=males_negative, color="blue", label="Male");
+plt.barh(y=df["Age Group"], width=females,color = "red", label="Female");
+
+plt.text(-5, 17, "Male", fontsize=25, fontweight="bold");
+plt.text(4, 17, "Female", fontsize=25, fontweight="bold");
