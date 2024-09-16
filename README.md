@@ -1,14 +1,16 @@
- # This is a README for IDS 706 Mini Project 2
+ # This is a README for IDS 706 Individual Project 1
 
-## Status Badge 
-[![PeterdeGuzman](https://github.com/nogibjj/PeterdeGuzman_Mini2/actions/workflows/main.yml/badge.svg)](https://github.com/nogibjj/PeterdeGuzman_Mini2/actions/workflows/main.yml)
+### Status Badges 
+
+### Youtube Video:
+
 
 ### Project Motivation:
 This project creates a Python script that utilizes the Pandas project to generate descriptive statistics and a data visualization. 
 
 
 ### Data Used in this Project:
-This project uses a subset of voter registration data from the North Carolina State Board of Elections. This data was pulled on September 13th, 2024, and a subset of the data was used for this project. This is not a representative sample of registered voters in Tyrell County, North Carolina. 
+This project uses a subset of voter registration data from the North Carolina State Board of Elections. This data was pulled on UPDATE THIS, and a subset of the data was used for this project. This is not a representative sample of registered voters in UPDATE THIS
 
 More information and a link to the data is available at: https://www.ncsbe.gov/results-data/voter-registration-data
 
@@ -25,7 +27,7 @@ Note: This data was sampled from the Tyrell County, North Carolina dataset on re
 
 ### Project Directory
 ```
-PeterdeGuzman_Mini2/
+PeterdeGuzman_IndividualProject1/
 ├── .devcontainer/
 │   ├── devcontainer.json
 │   └── Dockerfile

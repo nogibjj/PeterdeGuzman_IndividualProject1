@@ -6,10 +6,10 @@ format:
 	black *.py
 
 lint:
-	ruff check *.py test_*.py 
-# mylib/*.py *.ipynb	
+	ruff check *.py mylib/*.py test_*.py *.ipynb
+
 test: 
-	python -m pytest -cov=main test_main.py
+	python -m pytest -vv --nbval -cov=mylib -cov=main test_main.py *.ipynb
 
 all: install format lint test 
 
