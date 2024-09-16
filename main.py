@@ -177,7 +177,6 @@ def recode_age_groups(series):
 
 
 df["Age Group"] = df["age_at_year_end"].apply(recode_age_groups)
-print(df["Age Group"].value_counts(sort=False))
 
 df["Age Group"] = pd.Categorical(
     df["Age Group"],
@@ -201,20 +200,30 @@ print(df["gender_code"].value_counts(sort=False))
 
 # Count occurrences for each age group and gender
 age_gender_counts = df.groupby(["Age Group", "gender_code"]).size().unstack(fill_value=0)
-
+print(pd.DataFrame(age_gender_counts))
 # Prepare data for plotting
 age_groups = age_gender_counts.index
 males = age_gender_counts["M"]
 females = age_gender_counts["F"]
-
+print(age_gender_counts)
 # Convert males to negative values for plotting
 males_negative = -males
 
-fig = plt.figure(figsize=(15,10))
+# Create the plot
+fig, ax = plt.subplots(figsize=(12, 8))
 
+# Plot the population pyramid
+ax.barh(age_groups, males_negative, color='blue', label='Male', edgecolor='black')
+ax.barh(age_groups, females, color='red', label='Female', edgecolor='black')
 
-plt.barh(y=df["Age Group"], width=males_negative, color="blue", label="Male");
-plt.barh(y=df["Age Group"], width=females,color = "red", label="Female");
+# Set labels and title
+ax.set_xlabel('Number of Observations')
+ax.set_ylabel('Age Groups')
+ax.set_title('Population Pyramid')
+ax.legend()
 
-plt.text(-5, 17, "Male", fontsize=25, fontweight="bold");
-plt.text(4, 17, "Female", fontsize=25, fontweight="bold");
+# Add grid for better readability
+ax.grid(True)
+
+# Show plot
+plt.show()
