@@ -213,8 +213,8 @@ males_negative = -males
 fig, ax = plt.subplots(figsize=(12, 8))
 
 # Plot the population pyramid
-ax.barh(age_groups, males_negative, color='blue', label='Male', edgecolor='black')
-ax.barh(age_groups, females, color='red', label='Female', edgecolor='black')
+ax.barh(age_groups, males_negative, color='cornflowerblue', label='Male', edgecolor='black')
+ax.barh(age_groups, females, color='salmon', label='Female', edgecolor='black')
 
 # Set labels and title
 ax.set_xlabel('Number of Observations')
