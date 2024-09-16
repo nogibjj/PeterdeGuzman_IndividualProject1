@@ -131,7 +131,8 @@ def main(file_zip, file_txt):
     # and save to output folder
     generate_histogram_age(df)
 
-
+file_zip = "ncvoter32.zip"
+file_txt = "ncvoter32.txt"
 main()
 
 # test
@@ -139,14 +140,17 @@ import pandas as pd
 import zipfile
 import matplotlib.pyplot as plt
 
+file_zip = "ncvoter32.zip"
+file_txt = "ncvoter32.txt"
+
 def read_csv_ncvoterdata(voterdata):
     return pd.read_csv(
         voterdata, sep="\t", header=0, encoding="unicode_escape", low_memory=False
     )
 
 
-with zipfile.ZipFile("ncvoter32.zip") as z:
-    with z.open("ncvoter32.txt") as f:
+with zipfile.ZipFile(file_zip) as z:
+    with z.open(file_txt) as f:
         df = read_csv_ncvoterdata(f)
 
 column_names = df.columns
