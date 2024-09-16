@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+import zipfile
 
 
 # define functions
@@ -10,6 +11,9 @@ def read_csv_ncvoterdata(voterdata):
     return pd.read_csv(
         voterdata, sep="\t", header=0, encoding="unicode_escape", low_memory=False
     )
+
+
+# define analysis functions
 
 
 def mean_age(df):
@@ -54,12 +58,35 @@ def std_age(df):
     return result
 
 
+def recode_age_groups(series):
+    if series >= 18 & series <= 24:
+        return "18-24 yrs"
+    elif 25 <= series <= 29:
+        return "25-29 yrs"
+    elif 30 <= series <= 34:
+        return "30-34 yrs"
+    elif 35 <= series <= 39:
+        return "35-39 yrs"
+    elif 40 <= series <= 44:
+        return "40-44 yrs"
+    elif 45 <= series <= 49:
+        return "45-49 yrs"
+    elif 50 <= series <= 54:
+        return "50-54 yrs"
+    elif 55 <= series <= 59:
+        return "55-59 yrs"
+    elif 60 <= series <= 64:
+        return "60-64 yrs"
+    elif 65 <= series:
+        return "65+ yrs"
+
+
 def generate_histogram_age(df):
     age_column = [col for col in df.columns if "age" in col]
     plt.figure(figsize=(10, 6))
     bins = 6
     plt.hist(df[age_column], color="orange", bins=bins, edgecolor="black")
-    plt.title("Age Distribution for Registered Voters in Tyrell County, NC")
+    plt.title("Age Distribution for Registered Voters in Durham County, NC")
     plt.xlabel("Age")
     plt.ylabel("Frequency")
     plt.gca().yaxis.set_major_formatter(
@@ -73,8 +100,10 @@ def generate_histogram_age(df):
 
 
 def main():
-    # load data
-    df = read_csv_ncvoterdata("ncvoter89.txt")
+    # load data with zipfile and custom function
+    with zipfile.ZipFile("ncvoter32.zip") as z:
+        with z.open("ncvoter32.txt") as f:
+            df = read_csv_ncvoterdata(f)
     # summary statistics
     print(mean_age(df))
     print(median_age(df))

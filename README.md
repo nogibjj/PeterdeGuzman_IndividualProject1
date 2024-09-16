@@ -10,7 +10,7 @@ This project creates a Python script that utilizes the Pandas project to generat
 
 
 ### Data Used in this Project:
-This project uses a subset of voter registration data from the North Carolina State Board of Elections. This data was pulled on UPDATE THIS, and a subset of the data was used for this project. This is not a representative sample of registered voters in UPDATE THIS
+This project uses a subset of voter registration data for Durham County, North Carolina made available by the North Carolina State Board of Elections. This data was pulled on September 16th, 2024, and a subset of the data was used for this project. 
 
 More information and a link to the data is available at: https://www.ncsbe.gov/results-data/voter-registration-data
 
