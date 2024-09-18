@@ -1,15 +1,23 @@
 import pandas as pd
 import numpy as np
+import zipfile
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
 # Data Loading
 
 
-def read_csv_ncvoterdata(voterdata):
-    return pd.read_csv(
-        voterdata, sep="\t", header=0, encoding="unicode_escape", low_memory=False
-    )
+def unzip_read_csv_ncvoterdata(file_zip, file_txt):
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
+            df = pd.read_csv(
+                file_txt,
+                sep="\t",
+                header=0,
+                encoding="unicode_escape",
+                low_memory=False,
+            )
+    return df
 
 
 # Descriptive Statistics

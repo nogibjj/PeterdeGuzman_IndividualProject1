@@ -2,7 +2,7 @@
 import zipfile
 
 from mylib.lib import (
-    read_csv_ncvoterdata,
+    unzip_read_csv_ncvoterdata,
     mean_age,
     median_age,
     std_age,
@@ -15,9 +15,7 @@ from mylib.lib import (
 
 def main(file_zip, file_txt):
     # load data with zipfile and custom function
-    with zipfile.ZipFile(file_zip) as z:
-        with z.open(file_txt) as f:
-            df = read_csv_ncvoterdata(f)
+    unzip_read_csv_ncvoterdata(file_zip, file_txt)
     # summary statistics
     print(mean_age(df))
     print(median_age(df))
@@ -28,8 +26,12 @@ def main(file_zip, file_txt):
     generate_histogram_age(df)
     # generate population pyramid of age and gender
     generate_age_gender_pyramid(df)
+    columns_list = df.columns.tolist()
+    print(columns_list)
 
 
 file_zip = "ncvoter32.zip"
 file_txt = "ncvoter32.txt"
 main(file_zip, file_txt)
+columns_list = df.columns.tolist()
+print(columns_list)
