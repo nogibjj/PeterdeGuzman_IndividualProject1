@@ -1,22 +1,16 @@
 import pandas as pd
 import numpy as np
-import zipfile
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+import os
 
 # Data Loading
 
 
-def unzip_read_csv_ncvoterdata(file_zip, file_txt):
-    with zipfile.ZipFile(file_zip) as z:
-        with z.open(file_txt) as f:
-            df = pd.read_csv(
-                file_txt,
-                sep="\t",
-                header=0,
-                encoding="unicode_escape",
-                low_memory=False,
-            )
+def read_csv_ncvoterdata(voterdata):
+    df = pd.read_csv(
+        voterdata, sep="\t", header=0, encoding="unicode_escape", low_memory=False
+    )
     return df
 
 
@@ -108,7 +102,7 @@ def make_categorical_agecat(df):
 
 
 # Data Visualization
-def generate_histogram_age(df):
+def generate_histogram_age(df, plot_name):
     age_column = [col for col in df.columns if "age" in col]
     plt.figure(figsize=(10, 6))
     bins = 6
@@ -121,12 +115,13 @@ def generate_histogram_age(df):
     )
     x_ticks = np.arange(0, 110, 10)
     plt.xticks(x_ticks)
-
-    plt.savefig("output_histogram.png")
+    subfolder = "Output Images"
+    file_path = os.path.join(subfolder, plot_name)
+    plt.savefig(file_path)
     # plt.show()
 
 
-def generate_age_gender_pyramid(df):
+def generate_age_gender_pyramid(df, plot_name):
     # Prepare data for plotting
     df = pd.DataFrame(df)
     age_gender_counts = (
@@ -160,5 +155,6 @@ def generate_age_gender_pyramid(df):
 
     # Add grid for better readability
     ax.grid(True)
-    plt.savefig("output_age_gender_pyramid.png")
-    # plt.show()
+    subfolder = "Output Images"
+    file_path = os.path.join(subfolder, plot_name)
+    plt.savefig(file_path)  # plt.show()
