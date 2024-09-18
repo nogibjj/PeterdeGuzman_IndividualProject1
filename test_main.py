@@ -4,22 +4,15 @@ import zipfile
 
 from mylib.lib import (
     read_csv_ncvoterdata,
-    mean_age,
-    median_age,
-    std_age,
-    recode_age_groups,
-    make_categorical_agecat,
-    generate_histogram_age,
-    generate_age_gender_pyramid,
 )
 from test_lib import test_generate_histogram_age, test_generate_age_gender_pyramid
 import numpy as np
 import pandas as pd
 from pathlib import Path
 
-file_zip = file_zip = "ncvoter32.zip"
+file_zip = "ncvoter32.zip"
 file_txt = "ncvoter32.txt"
-file_txt = 
+
 
 if __name__ == "__main__":
     with zipfile.ZipFile(file_zip) as z:

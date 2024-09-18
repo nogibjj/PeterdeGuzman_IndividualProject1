@@ -25,7 +25,7 @@ with zipfile.ZipFile(file_zip) as z:
 print(mean_age(df))
 print(median_age(df))
 print(std_age(df))
-print(df["Age Group"].unique())
+# print(df["Age Group"].unique())
 
 df["Age Group"] = df["age_at_year_end"].apply(recode_age_groups)
 # something about making age group is breaking
