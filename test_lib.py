@@ -93,6 +93,7 @@ List_Match = [
 file_zip = "ncvoter89.zip"
 file_txt = "ncvoter89.txt"
 
+
 ### Loading Data and Testing that there are a standard number of columns for NC voter file data
 def test_read_csv_ncvoterdata(file_txt):
     test_df = pd.read_csv(
@@ -101,70 +102,82 @@ def test_read_csv_ncvoterdata(file_txt):
     assert test_df is not None
     assert all([col in test_df.columns for col in List_Match])
 
+
 with zipfile.ZipFile(file_zip) as z:
     with z.open(file_txt) as f:
         df = read_csv_ncvoterdata(f)
 
+
 # Test Analysis Functions
 def test_mean_age(df):
     mean_test = mean_age(df)
-    assert mean_test == #value of test data
+    assert mean_test == 57.30544090056285
+
+
+test_mean_age(df)
 
 
 def test_median_age(df):
-   median_test = median_age(df)
-   assert median_test == # value of test data
+    median_test = median_age(df)
+    assert median_test == 60.0
+
 
 def test_std_age(df):
     std_test = std_age(df)
-    assert std_test == # value of test data
-    
+    assert std_test == 19.8996673571703
+
 
 # Test Recoding Functions
 def test_recode_age_groups(series):
     df["Age Group"] = df["age_at_year_end"].apply(recode_age_groups)
     age_cat = [
-            "18-24 yrs",
-            "25-29 yrs",
-            "30-34 yrs",
-            "35-39 yrs",
-            "40-44 yrs",
-            "45-49 yrs",
-            "50-54 yrs",
-            "55-59 yrs",
-            "60-64 yrs",
-            "65+ yrs",
-        ]
+        "18-24 yrs",
+        "25-29 yrs",
+        "30-34 yrs",
+        "35-39 yrs",
+        "40-44 yrs",
+        "45-49 yrs",
+        "50-54 yrs",
+        "55-59 yrs",
+        "60-64 yrs",
+        "65+ yrs",
+    ]
     unique_values = df["Age Group"].unique()
     all_in_list = all(value in age_cat for value in unique_values)
-    print("All unique values in the Series are in the list of defined Age Group categories:", all_in_list)
+    print(
+        "All unique values in the Series are in the list of defined Age Group categories:",
+        all_in_list,
+    )
+
 
 def test_make_categorical_agecat(df):
     agecat_order = [
-            "18-24 yrs",
-            "25-29 yrs",
-            "30-34 yrs",
-            "35-39 yrs",
-            "40-44 yrs",
-            "45-49 yrs",
-            "50-54 yrs",
-            "55-59 yrs",
-            "60-64 yrs",
-            "65+ yrs",
-        ]
+        "18-24 yrs",
+        "25-29 yrs",
+        "30-34 yrs",
+        "35-39 yrs",
+        "40-44 yrs",
+        "45-49 yrs",
+        "50-54 yrs",
+        "55-59 yrs",
+        "60-64 yrs",
+        "65+ yrs",
+    ]
     make_categorical_agecat(df)
-    df.assertTrue(pd.api.types.is_categorical_dtype(df['Age Group']))
-    df.assertListEqual(list(df['Age Group'].cat.categories), agecat_order)
+    df.assertTrue(pd.api.types.is_categorical_dtype(df["Age Group"]))
+    df.assertListEqual(list(df["Age Group"].cat.categories), agecat_order)
+
 
 # Test Visualization Functions
 def test_generate_histogram_age(df):
     plot_name = "test_histogram"
     generate_age_gender_pyramid(df, plot_name)
-    file_path = os.path.join('Output Images', plot_name)
+    file_path = os.path.join("Output Images", plot_name)
     df.assertTrue(os.path.isfile(file_path), f"{file_path} does not exist.")
+
 
 def test_generate_age_gender_pyramid(df):
     plot_name = "test_populationpyramid"
     generate_age_gender_pyramid(df, plot_name)
-    file_path = os.path.join('Output Images', plot_name)
+    file_path = os.path.join("Output Images", plot_name)
     df.assertTrue(os.path.isfile(file_path), f"{file_path} does not exist.")
