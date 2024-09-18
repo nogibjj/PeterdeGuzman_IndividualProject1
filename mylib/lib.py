@@ -57,7 +57,7 @@ def std_age(df):
 
 # Data Processing
 def recode_age_groups(series):
-    if series >= 18 & series <= 24:
+    if 18 <= series <= 24:
         return "18-24 yrs"
     elif 25 <= series <= 29:
         return "25-29 yrs"
@@ -80,9 +80,8 @@ def recode_age_groups(series):
 
 
 def make_categorical_agecat(df):
-    age_column = [col for col in df.columns if "Age Group" in col]
-    df[age_column] = pd.Categorical(
-        df[age_column],
+    df["Age Group"] = pd.Categorical(
+        df["Age Group"],
         categories=[
             "18-24 yrs",
             "25-29 yrs",

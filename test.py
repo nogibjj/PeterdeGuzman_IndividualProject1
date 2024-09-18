@@ -25,11 +25,13 @@ with zipfile.ZipFile(file_zip) as z:
 print(mean_age(df))
 print(median_age(df))
 print(std_age(df))
+print(df["Age Group"].unique())
 
 df["Age Group"] = df["age_at_year_end"].apply(recode_age_groups)
 # something about making age group is breaking
 print(df["Age Group"].unique())
-make_categorical_agecat(df)
+df = make_categorical_agecat(df)
+print(df["Age Group"].unique())
 
 # generate histogram of age distribution
 generate_histogram_age(df)
@@ -72,4 +74,4 @@ ax.legend()
 # Add grid for better readability
 ax.grid(True)
 plt.savefig("output_age_gender_pyramid.png")
-# plt.show()
+plt.show()
