@@ -118,7 +118,6 @@ def generate_histogram_age(df, plot_name):
     subfolder = "Output Images"
     file_path = os.path.join(subfolder, plot_name)
     plt.savefig(file_path)
-    # plt.show()
 
 
 def generate_age_gender_pyramid(df, plot_name):
@@ -159,4 +158,4 @@ def generate_age_gender_pyramid(df, plot_name):
     ax.grid(True)
     subfolder = "Output Images"
     file_path = os.path.join(subfolder, plot_name)
-    plt.savefig(file_path)  # plt.show()
+    plt.savefig(file_path)
