@@ -125,7 +125,9 @@ def generate_age_gender_pyramid(df, plot_name):
     # Prepare data for plotting
     df = pd.DataFrame(df)
     age_gender_counts = (
-        df.groupby(["Age Group", "gender_code"]).size().unstack(fill_value=0)
+        df.groupby(["Age Group", "gender_code"], observed=False)
+        .size()
+        .unstack(fill_value=0)
     )
     age_groups = age_gender_counts.index
     males = age_gender_counts["M"]
