@@ -53,8 +53,8 @@ I also created supplementary test functions in the "test_lib.py" and "test_main.
 
 
 
-|gender_code    | F |     M  |   U |
-|Age Group|                      
+|Age Group| F | M | U |
+| :--- | :--- | :--- | :--- |                    
 |18-24 yrs |   11753 |   9734 |  6018 |
 |25-29 yrs |  16320 | 12216 | 6039 |
 |30-34 yrs |   17805 | 14125 | 5221 |
