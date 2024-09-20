@@ -174,7 +174,7 @@ def test_make_categorical_agecat(df):
 # Test Visualization Functions
 def test_generate_histogram_age(df):
     plot_name = "test_histogram.png"
-    generate_age_gender_pyramid(df, plot_name)
+    generate_histogram_age(df, plot_name)
     file_path = os.path.join("Output Images", plot_name)
     if os.path.exists(file_path):
         print("File exists.")
