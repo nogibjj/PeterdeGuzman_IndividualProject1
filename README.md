@@ -44,8 +44,10 @@ PeterdeGuzman_IndividualProject1/
     2. mean_age() - this function identifies the age column in the DataFrame and calculates the mean age.
     3. median_age() - this function identifies the age column in the DataFrame and calculates the median age.
     4. std_age() - this function identifies the age column in the DataFrame and calculates the standard deviation of age.
-    5. generate_histogram_age() - this function identifies the age column in the DataFrame and createss a histogram to display the age distribution for a sample of registered voters in the county of interest. 
-    6. generate_pop_pyramind() 
+    5. recode_age_groups() - this function takes in a series of ages and groups the numbered ages into ranges such as "18-24 yrs" and "25-29 yrs". In this project, this function is applied to the "age_at_year_end" variable to create a new variable labelled "Age Group".
+    6. make_categorical_age_cat() - this function converts a dataframe column titled "Age Group" into a categorical variable with ordered age groupings, from "18-24 yrs" up to "65+ yrs".
+    7. generate_histogram_age() - this function identifies the age column in the DataFrame and creates a histogram to display the age distribution for registered voters in the county of interest. 
+    6. generate_age_gender_pyramind() - this function creates a table of counts by "Age Group" and "gender_code" and then creates a population pyramid to display the counts by age group and gender for registered voters in the county of interest.
 I also created supplementary test functions in the "test_lib.py" and "test_main.py" scripts to test the operation and output of the created functions. 
 
 
