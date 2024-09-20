@@ -53,7 +53,7 @@ I also created supplementary test functions in the "test_lib.py" and "test_main.
 
 
 
-|Age Group| F | M | U |
+|Age Group| Female | Male | Unknown |
 | :--- | :--- | :--- | :--- |                    
 |18-24 yrs |   11753 |   9734 |  6018 |
 |25-29 yrs |  16320 | 12216 | 6039 |
