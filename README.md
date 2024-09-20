@@ -49,10 +49,13 @@ PeterdeGuzman_IndividualProject1/
 I also created supplementary test functions in the "test_lib.py" and "test_main.py" scripts to test the operation and output of the created functions. 
 
 
-### Statistics Summary
+### Statistics Summary -- Registered Voters in Durham County, North Carolina
 
+The mean age of registered voters is 46.98 years old. 
+The median age of registered voters is 42 years old. 
+The standard deviation of age for registered voters is 19.4224 years old. 
 
-
+The counts of gender by age group for registered voters in Durham County, NC is displayed below: 
 |Age Group| Female | Male | Unknown |
 | :--- | :--- | :--- | :--- |                    
 |18-24 yrs |   11753 |   9734 |  6018 |
