@@ -49,8 +49,6 @@ PeterdeGuzman_IndividualProject1/
 ├── Makefile
 ├── ncvoter32.zip
 ├── ncvoter32.zip
-├── output_age_gender_pyramid.png
-├── output_histogram.png
 ├── README.md
 ├── Requirements.txt
 ├── test_lib.py
