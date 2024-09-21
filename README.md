@@ -92,8 +92,8 @@ The counts of gender by age group for registered voters in Durham County, NC is 
 
 ### Data Visualizations
 To visualize the age distribution of registered voters in Durham County I created a simple histogram. 
-![alt text](output_histogram.png)
+![alt text](age_histogram.png)
 I also created a population pyramid of registered voters in Durham County that displays the count of registered voters by gender code and age group. As displayed in the above Age Group by Gender table, there are records in this dataset with "Unknown" gender codes, and this visualization does not include those registered voters. 
-![alt text](output_age_gender_pyramid.png)
+![alt text](age_gender_pyramid.png)
 
 
