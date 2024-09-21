@@ -11,24 +11,19 @@ from test_lib import (
     recode_age_groups,
     make_categorical_agecat,
 )
-import numpy as np
-import pandas as pd
-from pathlib import Path
 
 
-def test_main(file_zip, file_txt):
+def test_main():
+    file_zip = "ncvoter32.zip"
+    file_txt = "ncvoter32.txt"
     with zipfile.ZipFile(file_zip) as z:
         with z.open(file_txt) as f:
             df = read_csv_ncvoterdata(f)
     # test_generate_histogram()
     df["Age Group"] = df["age_at_year_end"].apply(recode_age_groups)
     make_categorical_agecat(df)
-    test_generate_histogram_age(df)
-    # test_generate_populationpyramid()
-    test_generate_age_gender_pyramid(df)
+    test_generate_histogram_age()
+    test_generate_age_gender_pyramid()
 
 
-file_zip = "ncvoter32.zip"
-file_txt = "ncvoter32.txt"
-
-test_main(file_zip, file_txt)
+test_main()

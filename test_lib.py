@@ -5,7 +5,6 @@ import zipfile
 import os
 
 from mylib.lib import (
-    read_csv_ncvoterdata,
     mean_age,
     median_age,
     std_age,
@@ -86,47 +85,92 @@ List_Match = [
     "vtd_desc",
 ]
 
+
 # Test Data is Tyrell County, NC Voter File Data, which has been independently analyzed
 # to verify summary statistics and age distribution.
 
-# Testing Reading Other County NC Voter File Data
-file_zip = "ncvoter89.zip"
-file_txt = "ncvoter89.txt"
 
-
-### Loading Data and Testing that there are a standard number of columns for NC voter file data
-def test_read_csv_ncvoterdata(file_txt):
-    test_df = pd.read_csv(
-        file_txt, sep="\t", header=0, encoding="unicode_escape", low_memory=False
-    )
+### Loading Data
+### Testing that there are a standard number of columns for NC voter file data
+def test_read_csv_ncvoterdata():
+    file_zip = "ncvoter89.zip"
+    file_txt = "ncvoter89.txt"
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
+            test_df = pd.read_csv(
+                f,
+                sep="\t",
+                header=0,
+                encoding="unicode_escape",
+                low_memory=False,
+            )
     assert test_df is not None
     assert all([col in test_df.columns for col in List_Match])
 
 
-with zipfile.ZipFile(file_zip) as z:
-    with z.open(file_txt) as f:
-        df = read_csv_ncvoterdata(f)
-
-
 # Test Analysis Functions
-def test_mean_age(df):
-    mean_test = mean_age(df)
+def test_mean_age():
+    file_zip = "ncvoter89.zip"
+    file_txt = "ncvoter89.txt"
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
+            test_df = pd.read_csv(
+                f,
+                sep="\t",
+                header=0,
+                encoding="unicode_escape",
+                low_memory=False,
+            )
+    mean_test = mean_age(test_df)
     assert mean_test == 57.30544090056285
 
 
-def test_median_age(df):
-    median_test = median_age(df)
+def test_median_age():
+    file_zip = "ncvoter89.zip"
+    file_txt = "ncvoter89.txt"
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
+            test_df = pd.read_csv(
+                f,
+                sep="\t",
+                header=0,
+                encoding="unicode_escape",
+                low_memory=False,
+            )
+    median_test = median_age(test_df)
     assert median_test == 60.0
 
 
-def test_std_age(df):
-    std_test = std_age(df)
+def test_std_age():
+    file_zip = "ncvoter89.zip"
+    file_txt = "ncvoter89.txt"
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
+            test_df = pd.read_csv(
+                f,
+                sep="\t",
+                header=0,
+                encoding="unicode_escape",
+                low_memory=False,
+            )
+    std_test = std_age(test_df)
     assert std_test == 19.8996673571703
 
 
 # Test Recoding Functions
-def test_recode_age_groups(series):
-    df["Age Group"] = df["age_at_year_end"].apply(recode_age_groups)
+def test_recode_age_groups():
+    file_zip = "ncvoter89.zip"
+    file_txt = "ncvoter89.txt"
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
+            test_df = pd.read_csv(
+                f,
+                sep="\t",
+                header=0,
+                encoding="unicode_escape",
+                low_memory=False,
+            )
+    test_df["Age Group"] = test_df["age_at_year_end"].apply(recode_age_groups)
     age_cat = [
         "18-24 yrs",
         "25-29 yrs",
@@ -139,15 +183,27 @@ def test_recode_age_groups(series):
         "60-64 yrs",
         "65+ yrs",
     ]
-    unique_values = df["Age Group"].unique()
+    unique_values = test_df["Age Group"].unique()
     all_in_list = all(value in age_cat for value in unique_values)
     print(
-        "All unique values in the Series are in the list of defined Age Group categories:",
+        "All unique values in the series are in list of Age Group categories:",
         all_in_list,
     )
 
 
-def test_make_categorical_agecat(df):
+def test_make_categorical_agecat():
+    file_zip = "ncvoter89.zip"
+    file_txt = "ncvoter89.txt"
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
+            test_df = pd.read_csv(
+                f,
+                sep="\t",
+                header=0,
+                encoding="unicode_escape",
+                low_memory=False,
+            )
+    test_df["Age Group"] = test_df["age_at_year_end"].apply(recode_age_groups)
     agecat_order = [
         "18-24 yrs",
         "25-29 yrs",
@@ -160,9 +216,9 @@ def test_make_categorical_agecat(df):
         "60-64 yrs",
         "65+ yrs",
     ]
-    make_categorical_agecat(df)
+    make_categorical_agecat(test_df)
     # Check if the actual order matches the expected order
-    actual_order = df["Age Group"].cat.categories.tolist()
+    actual_order = test_df["Age Group"].cat.categories.tolist()
 
     # Output the result
     if actual_order == agecat_order:
@@ -172,9 +228,20 @@ def test_make_categorical_agecat(df):
 
 
 # Test Visualization Functions
-def test_generate_histogram_age(df):
+def test_generate_histogram_age():
+    file_zip = "ncvoter89.zip"
+    file_txt = "ncvoter89.txt"
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
+            test_df = pd.read_csv(
+                f,
+                sep="\t",
+                header=0,
+                encoding="unicode_escape",
+                low_memory=False,
+            )
     plot_name = "test_histogram.png"
-    generate_histogram_age(df, plot_name)
+    generate_histogram_age(test_df, plot_name)
     file_path = os.path.join("Output Images", plot_name)
     if os.path.exists(file_path):
         print("File exists.")
@@ -182,9 +249,22 @@ def test_generate_histogram_age(df):
         print("File does not exist.")
 
 
-def test_generate_age_gender_pyramid(df):
+def test_generate_age_gender_pyramid():
+    file_zip = "ncvoter89.zip"
+    file_txt = "ncvoter89.txt"
+    with zipfile.ZipFile(file_zip) as z:
+        with z.open(file_txt) as f:
+            test_df = pd.read_csv(
+                f,
+                sep="\t",
+                header=0,
+                encoding="unicode_escape",
+                low_memory=False,
+            )
+    test_df["Age Group"] = test_df["age_at_year_end"].apply(recode_age_groups)
+    make_categorical_agecat(test_df)
     plot_name = "test_populationpyramid.png"
-    generate_age_gender_pyramid(df, plot_name)
+    generate_age_gender_pyramid(test_df, plot_name)
     file_path = os.path.join("Output Images", plot_name)
     if os.path.exists(file_path):
         print("File exists.")
@@ -193,13 +273,10 @@ def test_generate_age_gender_pyramid(df):
 
 
 if __name__ == "__main__":
-    file_zip = "ncvoter89.zip"
-    file_txt = "ncvoter89.txt"
-    with zipfile.ZipFile(file_zip) as z:
-        with z.open(file_txt) as f:
-            df = read_csv_ncvoterdata(f)
-    test_mean_age(df)
-    test_median_age(df)
-    test_std_age(df)
-    df["Age Group"] = df["age_at_year_end"].apply(test_recode_age_groups)
-    test_make_categorical_agecat(df)
+    # file_zip = "ncvoter89.zip"
+    # file_txt = "ncvoter89.txt"
+    # setup_tests()
+    test_mean_age()
+    test_median_age()
+    test_std_age()
+    test_make_categorical_agecat()
