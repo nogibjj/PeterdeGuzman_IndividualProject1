@@ -1,6 +1,10 @@
  # This is a README for IDS 706 Individual Project 1
 
 ### Status Badges 
+[![Install](https://github.com/nogibjj/PeterdeGuzman_IndividualProject1/actions/workflows/install.yml/badge.svg)](https://github.com/nogibjj/PeterdeGuzman_IndividualProject1/actions/workflows/install.yml)
+[![Format](https://github.com/nogibjj/PeterdeGuzman_IndividualProject1/actions/workflows/format.yml/badge.svg)](https://github.com/nogibjj/PeterdeGuzman_IndividualProject1/actions/workflows/format.yml)
+[![Lint](https://github.com/nogibjj/PeterdeGuzman_IndividualProject1/actions/workflows/lint.yml/badge.svg)](https://github.com/nogibjj/PeterdeGuzman_IndividualProject1/actions/workflows/lint.yml)
+[![Test](https://github.com/nogibjj/PeterdeGuzman_IndividualProject1/actions/workflows/test.yml/badge.svg)](https://github.com/nogibjj/PeterdeGuzman_IndividualProject1/actions/workflows/test.yml)
 
 ### Youtube Video:
 
@@ -17,22 +21,39 @@ More information and a link to the data is available at: https://www.ncsbe.gov/r
 ### Project Directory
 ```
 PeterdeGuzman_IndividualProject1/
+├── __pycache__/
 ├── .devcontainer/
 │   ├── devcontainer.json
 │   └── Dockerfile
+├── .pytestcache/
+├── .ruff_cache/
+├── __pycache__
 ├── .github/
 │   └── workflows/
-│       ├── main.yml
-├── .pytest_cache
-├── .ruff_cache
+│       ├── format.yml
+│       ├── install.yml
+│       ├── lint.yml
+│       └── test.yml
+├── mylib/
+│   └── lib.py
+├── Output Images/
+│       ├── age_gender_pyramid.png
+│       ├── age_histogram.png
+│       ├── test_histogram.png
+│       └── test_populationpyramid.png
 ├── .gitignore
+├── main.html
 ├── main.ipynb
+├── main.pdf
 ├── main.py
 ├── Makefile
-├── ncvoter89.txt
-├── output.png
+├── ncvoter32.zip
+├── ncvoter32.zip
+├── output_age_gender_pyramid.png
+├── output_histogram.png
 ├── README.md
 ├── Requirements.txt
+├── test_lib.py
 └── test_main.py
 ```
 
