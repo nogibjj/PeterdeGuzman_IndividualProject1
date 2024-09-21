@@ -10,7 +10,7 @@
 
 
 ### Project Motivation:
-This project creates a Python script that utilizes the Pandas package to generate descriptive statistics and the Matplotlib package to produce data visualizations. I also use GitHub Actions to install required packages, lint and format the files, and test both the Python script and Jupyer notebook. 
+This project creates a Python script that utilizes the Pandas package to generate descriptive statistics and the Matplotlib package to produce data visualizations. I also use GitHub Actions to install required packages, lint and format the files, and test both the Python script and Jupyter notebook. 
 
 
 ### Data Used in this Project:
@@ -48,7 +48,7 @@ PeterdeGuzman_IndividualProject1/
 ├── main.py
 ├── Makefile
 ├── ncvoter32.zip
-├── ncvoter32.zip
+├── ncvoter89.zip
 ├── README.md
 ├── Requirements.txt
 ├── test_lib.py
